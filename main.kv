@@ -1,0 +1,102 @@
+#:include kv/homescreen.kv
+#:include kv/settingsscreen.kv
+#:include kv/loginscreen.kv
+#:include kv/addworkoutscreen.kv
+#:include kv/fileupload.kv
+#:include kv/rule.kv
+#:include kv/Reachus.kv
+#:include kv/about.kv
+#:include kv/confirmation01.kv
+
+GridLayout:
+    cols: 1
+    FloatLayout:
+        GridLayout:
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#35477d")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            Image:
+                id: time_indicator3
+                source: "icons/003-sunset.png"
+                opacity: 0
+        FloatLayout:
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#35477d")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            # Put two weather icons and avatar icon
+            rows: 1
+            pos_hint: {"top": .95, "left": 1}
+            size_hint: 1, .15
+            Image:
+                id: time_indicator1
+                source: "icons/002-sunrise.png"
+                size_hint: 0.25, 0.5
+                pos_hint: {"top": 1, "right": 0.25}
+                opacity: 0
+            Image:
+                source: "icons/avatars/man.png"
+                id: avatar_image
+                size_hint: 0.5, 1
+                pos_hint: {"top": 1.15, "right": 0.75}
+            Image:
+                id: time_indicator4
+                source: "icons/007-crescent-moon.png"
+                size_hint: 0.25, 0.5
+                pos_hint: {"top": 1, "right": 1}
+                opacity: 0
+        ScreenManager:
+            size_hint: 1, 0.699
+            pos_hint: {"top": .799, "left": 1}
+            id: screen_manager
+            LoginScreen:
+                name: "login_screen"
+                id: login_screen
+            HomeScreen:
+                name: "home_screen"
+                id: home_screen
+            SettingsScreen:
+                name: "settings_screen"
+                id: settings_screen
+
+            AddWorkoutScreen:
+                name: "add_workout_screen"
+                id: add_workout_screen
+
+            fileupload:
+                name: "fileupload_screen"
+                id: fileupload_screen
+
+            rule:
+                name: "rule_screen"
+                id: rule_screen
+
+            Reachus:
+                name: "Reachus_screen"
+                id: Reachus_screen
+
+            Marking criteria:
+                name: "about_screen"
+                id: about_screen
+
+            confirmation01:
+                name: "confirmation01_screen"
+                id: confirmation01_screen
+
+
+
+        Widget:
+            size_hint: 1, .1
+            pos_hint: {"top": .1, "right": 1}
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#35477d")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos

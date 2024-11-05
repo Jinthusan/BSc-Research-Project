@@ -1,0 +1,66 @@
+<confirmation01>:
+
+    canvas:
+        Color:
+            rgb: utils.get_color_from_hex("#35477d")
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#35477d")
+            Rectangle:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        ScrollView:
+            size_hint: 1, .15
+            pos_hint: {"top": .95, "right": 1}
+            GridLayout:
+                canvas:
+                    Color:
+                        #rgb: utils.get_color_from_hex("#35477d")
+
+        Label:
+            id: Processing
+            text: "File Selected!"
+            size_hint: .8, .1
+            pos_hint: {"top": .90, "right": .9}
+            on_text:
+                self.focus = not self.focus if self.text.endswith("\n") else self.focus
+                #self.text = self.text.replace("\n","")
+
+
+        Label:
+            text: ""
+            size_hint: .8, .1
+            pos_hint: {"top": .70, "right": .9}
+
+        Label:
+            text: ""
+            size_hint: .8, .1
+            pos_hint: {"top": .75, "right": .9}
+
+
+        Label:
+            text: ""
+            size_hint: .8, .1
+            pos_hint: {"top": .80, "right": .9}
+
+        GridLayout:
+            rows: 1
+            size_hint: 1, .1
+            pos_hint: {"top": .1, "right": 1}
+
+
+            ImageButton:
+                source: "icons/back.png"
+                on_release:
+                    app.change_screen("home_screen", direction='right', mode='push')
+
+            ImageButton:
+                source: "icons/time.png"
+                on_release:
+                    app.change_screen("add_workout_screen")

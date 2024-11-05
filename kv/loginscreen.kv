@@ -1,0 +1,80 @@
+<LoginScreen>:
+    login_email: login_email
+    canvas:
+        Color:
+            rgb: utils.get_color_from_hex("#35477d")
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#35477d")
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+
+        Label:
+            id: LOGIN
+            text: "PLEASE LOGIN"
+            color: (1,0,0,1)
+            size_hint: .8, .1
+            pos_hint: {"top": .9, "right" :.9}
+            on_text:
+                self.focus = not self.focus if self.text.endswith("\n") else self.focus
+                #self.text = self.text.replace("\n","")
+
+        TextInput:
+            id: login_email
+            hint_text: ""
+            size_hint: .8, .1
+            pos_hint: {"top": .80, "right": .9}
+            on_text:
+                self.focus = not self.focus if "\n" in self.text else self.focus
+
+        TextInput:
+            id: login_password
+            password: True
+            hint_text: "password"
+            size_hint: .8, .1
+            pos_hint: {"top": .6, "right" :.9}
+            on_text:
+                self.focus = not self.focus if self.text.endswith("\n") else self.focus
+                #self.text = self.text.replace("\n","")
+
+
+
+        Label:
+            id: login_message
+            color: (1,0,0,1)
+            size_hint: .8, .1
+            pos_hint: {"top": .4, "right" :.9}
+        Button:
+            canvas.before:
+                Color:
+                    rgb: utils.get_color_from_hex("#35477d") if self.state == 'normal' else utils.get_color_from_hex("#3244AA")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            text: "LOGIN"
+            markup: True
+            size_hint: .5, .1
+            pos_hint: {"top": .2, "right" :.9}
+            on_release:root.btn()
+
+
+
+            LabelButton:
+                text: "GUEST"
+                canvas.before:
+                    Color:
+                        rgb: utils.get_color_from_hex("#35477d") if self.state == 'normal' else utils.get_color_from_hex("#6C5B7B")
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                #size_hint: .33, .1
+                #pos_hint: {"top": .1, "right": 1}
+                markup: True
+                on_release:
+                    app.change_screen("home_screen")

@@ -1,0 +1,52 @@
+<fileupload>:
+    size: self.size
+    auto_dismiss: False
+    get_file:get_file
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#35477d")
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Label:
+            id: LOGIN
+            text: ""
+            color: (1,0,0,1)
+            size_hint: .8, .1
+            pos_hint: {"top": .9, "right" :.9}
+            on_text:
+                self.focus = not self.focus if self.text.endswith("\n") else self.focus
+                #self.text = self.text.replace("\n","")
+
+
+
+        TextInput:
+            id: get_file
+            readonly: True
+            size_hint_y: None
+            height: '30dp'
+
+
+
+    BoxLayout:
+        orientation: "vertical"
+        FileChooser:
+            id: filechooser
+            FileChooserIconLayout
+        BoxLayout:
+            size_hint: (1, 0.1)
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            spacing: 20
+            Button:
+                text: "Cancel"
+                on_release: root.manager.current = 'home_screen'
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.selection)
+                id: ldbtn
+                disabled: True if filechooser.selection==[] else False
+                on_release:
+                    root.manager.current = 'confirmation01_screen'
+

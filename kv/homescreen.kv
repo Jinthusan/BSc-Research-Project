@@ -1,0 +1,113 @@
+#:import utils kivy.utils
+
+
+<HomeScreen>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#35477d")
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            pos_hint: {"top": 1, "left": 1}
+            size_hint: 1, .1
+            text: "Smart Judge App"
+
+        ScrollView:
+            pos_hint: {"top": .9, "left": 1}
+            size_hint: 1, .8
+            GridLayout:
+                # Banner grid
+                id: banner_grid
+                cols: 1
+                spacing: 5,5
+                size_hint_y: None
+                height: self.minimum_height
+                row_default_height: '100dp'
+                row_force_default: True
+        GridLayout:
+            rows: 1
+            size_hint: 1, .1
+            pos_hint: {"top": .1, "right": 1}
+
+
+            ImageButton:
+                source: "icons/back.png"
+                on_release:
+                    app.change_screen("settings_screen", direction='right', mode='push')
+
+            ImageButton:
+                source: "icons/next-1.png"
+                on_release:
+                    app.change_screen("add_workout_screen")
+
+        GridLayout:
+            rows: 1
+            size_hint: 1, .15
+            pos_hint: {"top": .60, "right": 1}
+            ImageButton:
+                source: "icons/sets.png"
+                on_release:
+                    app.change_screen("Reachus_screen")
+
+            ImageButton:
+                source: "icons/us.jpg"
+                on_release:
+                    app.change_screen("about_screen")
+
+            ImageButton:
+                source: "icons/sign_out.png"
+                on_release:
+                    app.change_screen("settings_screen")
+
+        GridLayout:
+            rows: 1
+            size_hint: 1, .15
+            pos_hint: {"top": .80, "right": 1}
+            ImageButton:
+                source: "icons/add.png"
+                on_release:
+                    app.change_screen("fileupload_screen")
+
+            ImageButton:
+                source: "icons/time.png"
+                on_release:
+                    app.change_screen("add_workout_screen")
+
+            ImageButton:
+                source: "icons/rule.png"
+                on_release:
+                    app.change_screen("rule_screen")
+
+        GridLayout:
+            rows: 1
+            size_hint: 1, .05
+            pos_hint: {"top": .45, "right": 1}
+            Label:
+                text: "Score"
+                id: time_label
+            Label:
+                text: "Criteria"
+                id: distance_label
+            Label:
+                text: "LogOut"
+                id: sets_label
+
+        GridLayout:
+            rows: 1
+            size_hint: 1, .05
+            pos_hint: {"top": .65, "right": 1}
+            Label:
+                text: "PreFile"
+                id: time_label
+            Label:
+                text: "Competitions"
+                id: distance_label
+            Label:
+                text: "Details"
+                id: sets_label
+
+
+
+

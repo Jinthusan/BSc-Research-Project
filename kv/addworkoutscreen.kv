@@ -1,0 +1,108 @@
+<AddWorkoutScreen>:
+    txt1: txt1
+    txt2: txt2
+    txt3: txt3
+    txt4: txt4
+    canvas:
+        Color:
+            rgb: utils.get_color_from_hex("#35477d")
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#35477d")
+            Rectangle:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        ScrollView:
+            size_hint: 1, .15
+            pos_hint: {"top": .95, "right": 1}
+            GridLayout:
+                canvas:
+                    Color:
+                        #rgb: utils.get_color_from_hex("#35477d")
+
+        Label:
+            id: Processing
+            text: "Audio Processing"
+            size_hint: .8, .1
+            pos_hint: {"top": .90, "right": .9}
+            on_text:
+                self.focus = not self.focus if self.text.endswith("\n") else self.focus
+                #self.text = self.text.replace("\n","")
+
+
+        TextInput:
+            hint_text: "TEXT"
+            size_hint: .8, .2
+            pos_hint: {"top": .70, "right": .9}
+            id: txt1
+            on_text:
+                self.focus = not self.focus if "\n" in self.text else self.focus
+
+        TextInput:
+            hint_text: "Hertz"
+            size_hint: .8, .1
+            pos_hint: {"top": .80, "right": .9}
+            id: txt2
+            on_text:
+                self.focus = not self.focus if "\n" in self.text else self.focus
+
+        GridLayout:
+            rows: 1
+            size_hint: 1, .05
+            pos_hint: {"top": .45, "right": 1}
+            Label:
+                text: "frequency"
+
+            Label:
+                text: "Message"
+        TextInput:
+            size_hint: .3, .1
+            pos_hint: {"top": .35, "right": .4}
+            id: txt3
+            on_text:
+                self.background_color = (1,1,1,1)
+                self.focus = not self.focus if "\n" in self.text else self.focus
+
+        TextInput:
+            size_hint: .5, .1
+            pos_hint: {"top": .35, "right": .9}
+            id: txt4
+            on_text:
+                self.background_color = (1,1,1,1)
+                self.focus = not self.focus if "\n" in self.text else self.focus
+
+
+        Button:
+            text: "Start Talk"
+            canvas.before:
+                Color:
+                    rgb: utils.get_color_from_hex("#35477d") if self.state == 'normal' else utils.get_color_from_hex("#6C5B7B")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            size_hint: .5, .1
+            pos_hint: {"top": .1, "right": 1}
+            markup: True
+            on_release:
+                root.btn()
+
+        Button:
+            text: "Back"
+            canvas.before:
+                Color:
+                    rgb: utils.get_color_from_hex("#35477d") if self.state == 'normal' else utils.get_color_from_hex("#6C5B7B")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            size_hint: .5, .1
+            pos_hint: {"top": .1, "right": .5}
+            markup: True
+            on_release:
+                app.change_screen("home_screen", direction = 'backwards')
+

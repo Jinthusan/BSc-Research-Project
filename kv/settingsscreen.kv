@@ -1,0 +1,53 @@
+<ClickableGrid@ButtonBehavior+GridLayout>:
+    rows: 1
+    canvas.before:
+        Color:
+            rgb: utils.get_color_from_hex("#35477d") if self.state == 'normal' else utils.get_color_from_hex("#6C5B7B")
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+
+<SettingsScreen>:
+    canvas:
+        Color:
+            rgb: utils.get_color_from_hex("#35477d")
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    FloatLayout:
+        canvas:
+            Color:
+                rgb: utils.get_color_from_hex("#35477d")
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        ClickableGrid:
+            size_hint: .8, .1
+            pos_hint: {"top": .4, "right": .9}
+            on_release:
+                app.change_screen("login_screen", direction = 'backwards')
+            Label:
+                text: "Are you sure?"
+            Label:
+                text: "[u]Sign Out[/u]"
+                markup: True
+
+
+        Button:
+            text: "Cancel"
+            canvas.before:
+                Color:
+                    rgb: utils.get_color_from_hex("#35477d") if self.state == 'normal' else utils.get_color_from_hex("#6C5B7B")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            size_hint: 1, .1
+            pos_hint: {"top": .1, "right": 1}
+            markup: True
+            on_release:
+                app.change_screen("home_screen", direction='left', mode='pop')
+
+
+
